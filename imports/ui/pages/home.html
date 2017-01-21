@@ -1,11 +1,10 @@
 <template name="home">
-	<div class="container">
-		<h1>listmkr.me</h1>
-		<div>
-			{{#each playlists}}
-			{{> plCover}}
-			{{/each}}
-		</div>
+	<h1>listmkr.me</h1>
+	<div>
+		<h3>Playlists</h3>
+		{{#each playlists}}
+		{{> plCover}}
+		{{/each}}
 	</div>
 </template>
 
