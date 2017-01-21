@@ -1,2 +1,1 @@
-import "../imports/ui/home.js";
-import "../imports/ui/global.less";
+import "../imports/startup/router.js";
