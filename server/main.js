@@ -1,5 +1,17 @@
 import { Meteor } from "meteor/meteor";
 
-Meteor.startup(function() {
-	// code to run on server at startup
+Meteor.publish("lists", function() {
+	return Lists.find({$or: [{owner: this.userId}, {private: false}]});
+});
+
+Meteor.publish("playlist", function(listId) {
+	return Lists.findOne(listId);
+});
+
+Meteor.publish("media", function() {
+	return Media.find();
+});
+
+Meteor.publish("services", function() {
+	return Services.find();
 });
