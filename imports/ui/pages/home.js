@@ -3,11 +3,6 @@ import { Tracker } from "meteor/tracker";
 
 import "./home.html";
 
-Tracker.autorun(function() {
-	console.log("Is lists ready?:", FlowRouter.subsReady("lists"));
-	console.log("Are all subscriptions ready?:", FlowRouter.subsReady());
-});
-
 Template.body.helpers({
 	playlists: [
 		{
