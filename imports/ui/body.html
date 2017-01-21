@@ -1,0 +1,14 @@
+<body>
+	<div class="container">
+		<h1>Todo List</h1>
+		<ul>
+			{{#each playlists}}
+			{{> playlist}}
+			{{/each}}
+		</ul>
+	</div>
+</body>
+
+<template name="playlist">
+	<li>{{name}}</li>
+</template>
