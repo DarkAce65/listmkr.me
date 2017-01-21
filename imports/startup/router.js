@@ -11,16 +11,16 @@ FlowRouter.route("/", {
 		this.register("lists", Meteor.subscribe("lists"));
 	},
 	action: function() {
-		BlazeLayout.render("layout", {main: "home"});
+		BlazeLayout.render("layout", {content: "home"});
 	}
 });
 
 FlowRouter.route("/playlists/:id", {
 	name: "playlist",
 	subscriptions: function(params) {
-		this.register("playlist", Meteor.subscribe("playlist", params._id));
+		this.register("playlist", Meteor.subscribe("playlist", params.id));
 	},
 	action: function() {
-		BlazeLayout.render("layout", {main: "playlist"});
+		BlazeLayout.render("layout", {content: "playlist"});
 	}
 });
