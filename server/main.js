@@ -5,7 +5,7 @@ Meteor.publish("lists", function() {
 });
 
 Meteor.publish("playlist", function(listId) {
-	return Lists.findOne(listId);
+	return Lists.find(listId, {limit: 1});
 });
 
 Meteor.publish("media", function() {
