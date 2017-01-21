@@ -1,14 +1,10 @@
 <body>
 	<div class="container">
 		<h1>listmkr.me</h1>
-		<ul>
+		<div>
 			{{#each playlists}}
 			{{> playlist}}
 			{{/each}}
-		</ul>
+		</div>
 	</div>
 </body>
-
-<template name="playlist">
-	<li>{{name}}</li>
-</template>

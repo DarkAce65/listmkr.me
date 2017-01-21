@@ -1,6 +1,7 @@
 import { Template } from "meteor/templating";
 
 import "./body.html";
+import "./playlist.html";
 
 Template.body.helpers({
 	playlists: [
