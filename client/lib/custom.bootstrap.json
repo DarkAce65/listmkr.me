@@ -1,16 +1,16 @@
 {
 	"modules" : {
 		"normalize"            : true,
-		"print"                : false,
+		"print"                : true,
 		"glyphicons"           : false,
 
-		"scaffolding"          : false,
-		"type"                 : false,
-		"code"                 : false,
-		"grid"                 : false,
-		"tables"               : false,
-		"forms"                : false,
-		"buttons"              : false,
+		"scaffolding"          : true,
+		"type"                 : true,
+		"code"                 : true,
+		"grid"                 : true,
+		"tables"               : true,
+		"forms"                : true,
+		"buttons"              : true,
 
 		"component-animations" : false,
 		"dropdowns"            : false,
@@ -48,7 +48,7 @@
 		"tab"                  : false,
 		"transition"           : false,
 
-		"utilities"            : false,
-		"responsive-utilities" : false
+		"utilities"            : true,
+		"responsive-utilities" : true
 	}
 }
