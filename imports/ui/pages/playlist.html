@@ -1,10 +1,10 @@
-<body>
+<template name="playlist">
 	<div class="playlist">
-		<h3 class="pl-title">{{playlist.name}}</h3>
+		<h3 class="pl-title">{{name}}</h3>
 		<ol>
-			{{#each playlist.items}}
+			{{#each items}}
 			<li>{{title}}</li>
 			{{/each}}
 		</ol>
 	</div>
-</body>
+</template>
