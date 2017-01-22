@@ -23,7 +23,7 @@
 </template>
 
 <template name="plCover">
-	<div><a href="{{pathFor 'playlist' id=_id}}">{{name}} ({{#if private}}Private, {{/if}}{{_id}})</a> - {{owner}}</div>
+	<div>{{name}} ({{#if private}}Private, {{/if}}{{_id}}) - {{owner}}</div>
 	<ol style="font-size: 85%;">
 		{{#each item in items}}
 		<li><span style="font-family: monospace;">{{item._id}}</span> {{item.type}}<br>{{item.name}} - {{item.creator}}</li>
@@ -34,6 +34,6 @@
 <template name="topButtons">
 	<div>
 	<button id="addPlaylist" type="button">Add Playlist</button>
-	<button id="addToPlaylist" type="button">Add Item To Playlist</button>
+	<button id="addToPlaylist" type="button">Add Item  To Playlist</button>
 </div>
 </template>
