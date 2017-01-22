@@ -17,10 +17,10 @@
 </template>
 
 <template name="plCover">
-	<div>{{name}} ({{_id}}){{#if private}} - Private{{/if}}<br><small>{{owner}}</small></div>
-	<ul class="list-inline">
+	<div>{{name}} ({{#if private}}Private, {{/if}}{{_id}}) - {{owner}}</div>
+	<ol style="font-size: 85%;">
 		{{#each item in items}}
-		<li>{{item.name}} ({{item.type}}, {{item._id}}) - {{item.creator}}</li>
+		<li><span style="font-family: monospace;">{{item._id}}</span> {{item.type}}<br>{{item.name}} - {{item.creator}}</li>
 		{{/each}}
-	</ul>
+	</ol>
 </template>
