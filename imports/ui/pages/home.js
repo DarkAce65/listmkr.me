@@ -12,7 +12,7 @@ Template.home.onCreated(function() {
 
 Template.home.helpers({
 	playlists: function() {
-		var lists = Lists.find({}, {sort: {"createdAt": -1}}).fetch();
+		var lists = Lists.find({}, {sort: {"updatedAt": -1}}).fetch();
 		if(lists) {
 			return lists;
 		}

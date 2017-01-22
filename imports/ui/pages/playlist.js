@@ -13,8 +13,18 @@ Template.playlist.events({
 		var list = Lists.findOne(FlowRouter.getParam("id"));
 		Meteor.call("addItemToPlaylist", list._id, doc._id);
 	},
-	'click #home': function(){
+	"click #home": function(){
 		FlowRouter.go("home");
+	},
+	"click #add": function(){
+		var type = prompt("Enter the type of the item (text, audio, video)");
+		var url = prompt("Enter the item's url");
+		Meteor.call("addItemToPlaylist", FlowRouter.getParam("id"), url, type);
+	},
+	"click #delete": function(){
+		Meteor.call("deletePlaylist", FlowRouter.getParam("id"), function(error, data) {
+			FlowRouter.go("home");
+		});
 	}
 });
 
@@ -38,19 +48,5 @@ Template.playlist.helpers({
 			});
 		}
 		return [];
-	},
-	settings: function() {
-		return{
-			position: "bottom",
-			limit: 5,
-			rules:[
-			{
-				token: '@',
-				collection: Media,
-				field: "name",
-				template: Template.mediaFill
-			}
-			]
-		}
 	}
 });

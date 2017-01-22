@@ -1,17 +1,12 @@
 <template name="playlist">
 	<div class="playlist">
-		<button type="button"  class="btn" id="home">Home</button> 
+		<button id="home" type="button" class="btn btn-default">Home</button>
 		<h3 class="pl-title">{{playlist.name}}{{#if playlist.private}} - Private{{/if}}</h3>
+		<p><a id="add" href="#">Add item to playlist</a><br><a id="delete" href="#">Delete playlist</a></p>
 		<ol>
 			{{#each item in items}}
 			<li>{{item.name}} - {{item.creator}}</li>
 			{{/each}}
 		</ol>
 	</div>
-	{{> inputAutocomplete settings=settings id="addMedia" class="input-xlarge" placeholder="Add an Item"}}
 </template>
-
-<template name="mediaFill">
-	<span class="label">{{name}}</span>
-</template>
-
