@@ -35,6 +35,13 @@ Meteor.methods({
 		if(!this.userId) {
 			throw new Meteor.Error(401, "You are not logged in.");
 		}
+		var list = Lists.findOne(listId);
+		if(!list) {
+			throw new Meteor.Error(404, "List not found.");
+		}
+		if(list.owner !== this.userId) {
+			throw new Meteor.Error(401, "You don't own this list.");
+		}
 		if(type !== "text" && type !== "audio" && type !== "video") {
 			throw new Meteor.Error(400, "Invalid type.");
 		}
