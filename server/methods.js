@@ -37,6 +37,24 @@ Meteor.methods({
 		var now = new Date();
 		Lists.update(listId, {$set: {"updatedAt": now}, $push: {"items": mediaId}});
 	},
+	"removeItemFromPlaylist": function(listId, index) {
+		if(!this.userId) {
+			throw new Meteor.Error(401, "You are not logged in.");
+		}
+		var list = Lists.findOne(listId);
+		if(!list) {
+			throw new Meteor.Error(404, "List not found.");
+		}
+		if(list.owner !== this.userId) {
+			throw new Meteor.Error(401, "You don't own this list.");
+		}
+		if(index < 0 || index >= list.items.length) {
+			throw new Meteor.Error(400, "Index out of bounds.");
+		}
+		list.items.splice(index, 1);
+		var now = new Date();
+		Lists.update(listId, {$set: {"updatedAt": now, "items": list.items}});
+	},
 	"deletePlaylist": function(listId) {
 		if(!this.userId) {
 			throw new Meteor.Error(401, "You are not logged in.");
