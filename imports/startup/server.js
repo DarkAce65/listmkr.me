@@ -27,6 +27,30 @@ if(Media.find().count() === 0) {
 		}
 	];
 	data.forEach(function(doc) {
-		Media.update(doc);
+		Media.insert(doc);
+	});
+}
+
+if(Services.find().count() === 0) {
+	var data = [
+		{
+			"type": "video",
+			"name": "youtube"
+		},
+		{
+			"type": "audio",
+			"name": "spotify"
+		},
+		{
+			"type": "audio",
+			"name": "soundcloud"
+		},
+		{
+			"type": "audio",
+			"name": "itunes"
+		}
+	];
+	data.forEach(function(doc) {
+		Services.insert(doc);
 	});
 }
