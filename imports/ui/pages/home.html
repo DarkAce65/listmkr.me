@@ -1,31 +1,19 @@
 
 <template name="home">
-	<div class="hiTaha">
-		<h1>listmkr.me</h1>
-		<p>Accounts.createUser({username: USERNAME, password: PASSWORD});</p>
-		<p>Meteor.call("createPlaylist", NAME, PRIVATE (optional));</p>
-		<p>Meteor.call("addItemToPlaylist", PLAYLISTID, MEDIAID);</p>
-	</div>
-
-	<div style="padding-top: 20px">
-		{{> topButtons}}
-	</div>
-
-	<div >
-		<h3>Playlists</h3>
-		{{#each playlists}}
-		{{> plCover}}
-		{{/each}}
-	</div>
 	<div>
-		<h3>Media</h3>
-		<ul>
-			{{#each media}}
-			<li>{{name}} ({{type}}, {{_id}}) - {{creator}}</li>
-			{{/each}}
-		</ul>
+		<h1>listmkr.me</h1>
+		<p>{{#if currentUser}}<button id="addPlaylist" type="button" class="btn btn-default" >Add Playlist</button>{{else}}<button id="login" type="button" class="btn btn-info" >Login</button>{{/if}}</p>
 	</div>
-
+	<h3>Playlists</h3>
+	{{#each playlists}}
+	{{> plCover}}
+	{{/each}}
+	<h3>Media</h3>
+	<ul>
+		{{#each media}}
+		<li>{{name}} ({{type}}, {{_id}}) - {{creator}}</li>
+		{{/each}}
+	</ul>
 	<div>
 		<div class="modal fade" id="addItem">
 			<div class="modal-dialog modal-sm">
@@ -74,7 +62,7 @@
 
 <template name="topButtons">
 	<div>
-	<button id="addPlaylist" type="button" class="btn btn-default" >Add Playlist</button>
-	<button id="addToPlaylist" type="button" class="btn btn-default">Add Item To Playlist</button>
-</div>
+		<button id="addPlaylist" type="button" class="btn btn-default" >Add Playlist</button>
+		<button id="addToPlaylist" type="button" class="btn btn-default">Add Item To Playlist</button>
+	</div>
 </template>

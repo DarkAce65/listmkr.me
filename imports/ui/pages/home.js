@@ -27,24 +27,14 @@ Template.home.helpers({
 	}
 });
 
-Template.topButtons.events({
-	"click #addPlayList": function(){
-		if(Meteor.userId()) {
-			window.open(playlist.html);
-		} else {
-			Accounts.createUser(userObject, {
-				username: "username",
-				password: "password"
-			});
-		}
+Template.home.events({
+	"click #login": function(e) {
+		Accounts.createUser({username: "username", password: "password"});
 	},
-	"click #addToPlaylist": function(){
+	"click #addPlaylist": function() {
 		if(Meteor.userId()) {
-			$("#addItem").modal("show");
-		} else {
-			Accounts.createUser(userObject, {
-				username: "username",
-				password: "password"
+			Meteor.call("createPlaylist", "Test", false, function(error, data) {
+				FlowRouter.go("playlist", {id: data});
 			});
 		}
 	},
@@ -77,4 +67,3 @@ Template.plCover.helpers({
 		return [];
 	}
 });
-

@@ -29,7 +29,7 @@ Meteor.methods({
 			"items": [],
 			"private": prvt
 		}
-		Lists.insert(list);
+		return Lists.insert(list);
 	},
 	"addItemToPlaylist": function(listId, url, type) {
 		if(!this.userId) {
