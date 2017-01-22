@@ -1,5 +1,7 @@
 import { Meteor } from "meteor/meteor";
 
+import "./methods.js";
+
 Meteor.publish("lists", function() {
 	return Lists.find({$or: [{owner: this.userId}, {private: false}]});
 });
