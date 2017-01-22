@@ -16,5 +16,30 @@ Template.home.helpers({
 			return lists;
 		}
 		return [];
+	},
+	media: function() {
+		var media = Media.find().fetch();
+		if(media) {
+			return media;
+		}
+		return [];
+	}
+});
+
+
+Template.plCover.helpers({
+	items: function() {
+		var media = Media.find().fetch();
+		if(media) {
+			var items = this.items.map(function(value) {
+				var media = Media.findOne(value);
+				if(media) {
+					return media;
+				}
+				return {"name": "Unknown", "creator": "Unknown"};
+			});
+			return items;
+		}
+		return [];
 	}
 });

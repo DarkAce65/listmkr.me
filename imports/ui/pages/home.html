@@ -6,8 +6,21 @@
 		{{> plCover}}
 		{{/each}}
 	</div>
+	<div>
+		<h3>Media</h3>
+		<ul>
+			{{#each media}}
+			<li>{{name}} ({{type}}, {{_id}}) - {{creator}}</li>
+			{{/each}}
+		</ul>
+	</div>
 </template>
 
 <template name="plCover">
-	<div>{{name}}{{#if private}} - Private{{/if}}</div>
+	<div>{{name}} ({{_id}}){{#if private}} - Private{{/if}}<br><small>{{owner}}</small></div>
+	<ul class="list-inline">
+		{{#each item in items}}
+		<li>{{item.name}} ({{item.type}}, {{item._id}}) - {{item.creator}}</li>
+		{{/each}}
+	</ul>
 </template>
