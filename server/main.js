@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor";
 
+import "../imports/startup/server.js";
 import "./methods.js";
 
 Meteor.publish("lists", function() {
