@@ -4,7 +4,6 @@ import { BlazeLayout } from "meteor/kadira:blaze-layout";
 import "../ui/layout.js"
 import "../ui/pages/home.js"
 import "../ui/pages/playlist.js"
-import "../ui/pages/funEnter.js"
 
 FlowRouter.route("/", {
 	name: "home",
@@ -17,12 +16,5 @@ FlowRouter.route("/playlists/:id", {
 	name: "playlist",
 	action: function() {
 		BlazeLayout.render("layout", {content: "playlist"});
-	}
-});
-
-FlowRouter.route("/fun", {
-	name: "funEnter",
-	action: function() {
-		BlazeLayout.render("layout", {content: "funEnter"});
 	}
 });
