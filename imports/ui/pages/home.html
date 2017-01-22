@@ -1,12 +1,17 @@
+
 <template name="home">
-	<h1>listmkr.me</h1>
-	<p>Accounts.createUser({username: USERNAME, password: PASSWORD});</p>
-	<p>Meteor.call("createPlaylist", NAME, PRIVATE (optional));</p>
-	<p>Meteor.call("addItemToPlaylist", PLAYLISTID, MEDIAID);</p>
-	<div>
+	<div class="w3-container w3-teal">
+		<h1>listmkr.me</h1>
+		<p>Accounts.createUser({username: USERNAME, password: PASSWORD});</p>
+		<p>Meteor.call("createPlaylist", NAME, PRIVATE (optional));</p>
+		<p>Meteor.call("addItemToPlaylist", PLAYLISTID, MEDIAID);</p>
+	</div>
+
+	<div style="padding-top: 20px">
 		{{> topButtons}}
 	</div>
-	<div>
+
+	<div >
 		<h3>Playlists</h3>
 		{{#each playlists}}
 		{{> plCover}}
@@ -60,7 +65,7 @@
 
 <template name="topButtons">
 	<div>
-	<button id="addPlaylist" type="button">Add Playlist</button>
+	<button id="addPlaylist" type="button" >Add Playlist</button>
 	<button id="addToPlaylist" type="button">Add Item To Playlist</button>
 </div>
 </template>

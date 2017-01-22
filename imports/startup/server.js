@@ -45,7 +45,7 @@ if(Services.find().count() === 0) {
 		{
 			"type": "audio",
 			"name": "spotify",
-			"urlRegexes": [],
+			"urlRegexes": ["play\.spotify\.com|spotify\:track"],
 			"dataParser": function(url) {
 				var data = {};
 				return data;
