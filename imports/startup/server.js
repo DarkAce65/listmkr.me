@@ -36,38 +36,14 @@ if(Services.find().count() === 0) {
 		{
 			"type": "video",
 			"name": "youtube",
-			"urlRegexes": ["youtube\.com|youtu\.be"],
-			"dataParser": function(url) {
-				var data = {};
-				return data;
-			}
+			"identityRegexes": ["youtube\.com|youtu\.be"],
+			"urlRegex": "(?:youtube\.com.*?\Wvi?[=/]|youtu\.be\/)([A-z0-9-]*)"
 		},
 		{
 			"type": "audio",
 			"name": "spotify",
-			"urlRegexes": [],
-			"dataParser": function(url) {
-				var data = {};
-				return data;
-			}
-		},
-		{
-			"type": "audio",
-			"name": "soundcloud",
-			"urlRegexes": ["soundcloud\.com"],
-			"dataParser": function(url) {
-				var data = {};
-				return data;
-			}
-		},
-		{
-			"type": "audio",
-			"name": "itunes",
-			"urlRegexes": [],
-			"dataParser": function(url) {
-				var data = {};
-				return data;
-			}
+			"identityRegexes": [],
+			"urlRegex": ""
 		}
 	];
 	data.forEach(function(doc) {

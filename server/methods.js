@@ -2,8 +2,8 @@ import { Meteor } from "meteor/meteor";
 
 function parseService(url, services) {
 	for(var i = 0; i < services.length; i++) {
-		for(var r = 0; r < services[r].urlRegexes.length; r++) {
-			if(url.match(services[i].urlRegexes[r])) {
+		for(var r = 0; r < services[r].identityRegexes.length; r++) {
+			if(url.match(services[i].identityRegexes[r])) {
 				return services[i].name;
 			}
 		}
