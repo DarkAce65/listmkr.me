@@ -50,7 +50,7 @@
 </template>
 
 <template name="plCover">
-	<div>{{name}} ({{#if private}}Private, {{/if}}{{_id}}) - {{owner}}</div>
+	<div><a href="{{pathFor 'playlist' id=_id}}">{{name}} ({{#if private}}Private, {{/if}}{{_id}})</a> ({{#if private}}Private, {{/if}}{{_id}}) - {{owner}}</div>
 	<ol style="font-size: 85%;">
 		{{#each item in items}}
 		<li><span style="font-family: monospace;">{{item._id}}</span> {{item.type}}<br>{{item.name}} - {{item.creator}}</li>

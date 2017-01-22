@@ -36,7 +36,7 @@ if(Services.find().count() === 0) {
 		{
 			"type": "video",
 			"name": "youtube",
-			"urlRegexes": [],
+			"urlRegexes": ["youtube\.com|youtu\.be"],
 			"dataParser": function(url) {
 				var data = {};
 				return data;
@@ -54,7 +54,7 @@ if(Services.find().count() === 0) {
 		{
 			"type": "audio",
 			"name": "soundcloud",
-			"urlRegexes": [],
+			"urlRegexes": ["soundcloud\.com"],
 			"dataParser": function(url) {
 				var data = {};
 				return data;
