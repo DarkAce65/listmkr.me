@@ -5,6 +5,8 @@ import "./home.html";
 
 Template.home.onCreated(function() {
 	Meteor.subscribe("lists");
+	Meteor.subscribe("media");
+	Meteor.subscribe("services");
 });
 
 Template.home.helpers({

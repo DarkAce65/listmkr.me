@@ -2,8 +2,8 @@
 	<div class="playlist">
 		<h3 class="pl-title">{{name}}</h3>
 		<ol>
-			{{#each items}}
-			<li>{{title}}</li>
+			{{#each item in items}}
+			<li>{{item.name}} - {{item.creator}}</li>
 			{{/each}}
 		</ol>
 	</div>

@@ -5,13 +5,20 @@ import "./playlist.html";
 
 Template.playlist.onRendered(function() {
 	Meteor.subscribe("playlist", FlowRouter.getParam("id"));
+	Meteor.subscribe("mediaList", FlowRouter.getParam("id"));
 });
 
 Template.playlist.helpers({
 	"items": function() {
 		var list = Lists.findOne(FlowRouter.getParam("id"));
 		if(list) {
-			return list.items;
+			return list.items.map(function(value) {
+				var media = Media.findOne(value);
+				if(media) {
+					return media;
+				}
+				return {"name": "Unknown", "creator": "Unknown"};
+			});
 		}
 		return [];
 	}
