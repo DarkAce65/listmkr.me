@@ -29,25 +29,17 @@ Template.home.helpers({
 
 Template.home.events({
 	"click #login": function(e) {
-		Accounts.createUser({username: "username", password: "password"});
+		var username = prompt("Please enter your username");
+		var password = prompt("Please enter your password");
+		Accounts.createUser({username: username, password: password});
 	},
 	"click #addPlaylist": function() {
 		if(Meteor.userId()) {
-			Meteor.call("createPlaylist", "Test", false, function(error, data) {
+			var name = prompt("Please enter a name for your list");
+			Meteor.call("createPlaylist", name, false, function(error, data) {
 				FlowRouter.go("playlist", {id: data});
 			});
 		}
-	},
-	"click #save": function(e){
-		e.preventDefault();
-		var name = {
-			name: $("#itemName").val()
-		};
-		var link = {
-			link: $("itemLink").val()
-		};
-		//Meteor.call("addItemToPlaylist", PLAYLISTID, MEDIAID)
-		$("#addItem").modal("hide");
 	}
 });
 
