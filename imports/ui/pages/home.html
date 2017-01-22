@@ -1,6 +1,6 @@
 
 <template name="home">
-	<div class="w3-container w3-teal">
+	<div class="hiTaha">
 		<h1>listmkr.me</h1>
 		<p>Accounts.createUser({username: USERNAME, password: PASSWORD});</p>
 		<p>Meteor.call("createPlaylist", NAME, PRIVATE (optional));</p>
@@ -55,7 +55,17 @@
 </template>
 
 <template name="plCover">
-	<div><a href="{{pathFor 'playlist' id=_id}}">{{name}} ({{#if private}}Private, {{/if}}{{_id}})</a> ({{#if private}}Private, {{/if}}{{_id}}) - {{owner}}</div>
+	<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img rel="icon" type="image/png" src="/public/default.jpg" alt="...">
+      <div class="caption">
+        <h3><a href="{{pathFor 'playlist' id=_id}}">{{name}} ({{#if private}}Private, {{/if}}{{_id}})</a></h3>
+      </div>
+    </div>
+  </div>
+</div>
+	<div> ({{#if private}}Private, {{/if}}{{_id}}) - {{owner}}</div>
 	<ol style="font-size: 85%;">
 		{{#each item in items}}
 		<li><span style="font-family: monospace;">{{item._id}}</span> {{item.type}}<br>{{item.name}} - {{item.creator}}</li>
@@ -65,7 +75,7 @@
 
 <template name="topButtons">
 	<div>
-	<button id="addPlaylist" type="button" >Add Playlist</button>
-	<button id="addToPlaylist" type="button">Add Item To Playlist</button>
+	<button id="addPlaylist" type="button" class="btn btn-default" >Add Playlist</button>
+	<button id="addToPlaylist" type="button" class="btn btn-default">Add Item To Playlist</button>
 </div>
 </template>

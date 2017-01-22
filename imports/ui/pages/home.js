@@ -1,5 +1,6 @@
 import { Template } from "meteor/templating";
 import { Tracker } from "meteor/tracker";
+import { Accounts } from 'meteor/accounts-base';
 
 import "./home.html";
 
@@ -76,3 +77,4 @@ Template.plCover.helpers({
 		return [];
 	}
 });
+
