@@ -20,6 +20,33 @@
 			{{/each}}
 		</ul>
 	</div>
+
+	<div>
+		<div class="modal fade" id="addItem">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h3>Add Item to Playlist</h3>
+					</div>
+
+					<div class="modal-body">
+						<p><label for="name">Name</label>
+						<input type="text" id="itemName"/></p>
+
+						<p><label for="link">Link</label>
+						<input type="text" id="itenLink"/></p>
+					</div>
+
+					<div class="modal-footer">
+						<button id="save" type="button">Save</button>
+						<button type="button" data-dismiss="modal">Cancel</button>
+				 	</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="plCover">
@@ -34,6 +61,6 @@
 <template name="topButtons">
 	<div>
 	<button id="addPlaylist" type="button">Add Playlist</button>
-	<button id="addToPlaylist" type="button">Add Item  To Playlist</button>
+	<button id="addToPlaylist" type="button">Add Item To Playlist</button>
 </div>
 </template>
