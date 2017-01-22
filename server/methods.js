@@ -54,7 +54,7 @@ Meteor.methods({
 			if(m) {
 				Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": m._id}});
 				console.log("exists, update list");
-				return;
+				return 0;
 			}
 			else {
 				var media = {
@@ -66,16 +66,38 @@ Meteor.methods({
 				media.services[service.name] = store;
 				// Query service for information
 				console.log("query for info");
-				m = Media.insert(media);
-				Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": m._id}});
-				console.log("didn't exist, update list");
-				return;
+				Media.insert(media, function(error, id) {
+					Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": id}});
+					console.log("didn't exist, update list");
+				});
+				return 0;
 			}
 		}
 		else {
-			// 1. Find potential matches
-			// 2. Ask user
-			console.log("find matches + ask user");
+			var q = {};
+			q["services.unknown"] = store;
+			console.log(q);
+			var m = Media.findOne(q);
+			if(m) {
+				Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": m._id}});
+				console.log("exists, update list");
+				return 0;
+			}
+			else {
+				var media = {
+					"type": type,
+					"services": {
+						"unknown": store
+					},
+					"name": url,
+					"creator": ""
+				};
+				Media.insert(media, function(error, id) {
+					Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": id}});
+					console.log("find matches + ask user");
+				});
+				return 1;
+			}
 		}
 	},
 	"removeItemFromPlaylist": function(listId, index) {
