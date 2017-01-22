@@ -9,7 +9,7 @@ function parseService(url, services) {
 		}
 	}
 
-	return -1;
+	return {name: "unknown"};
 }
 
 Meteor.methods({
@@ -35,28 +35,38 @@ Meteor.methods({
 		if(!this.userId) {
 			throw new Meteor.Error(401, "You are not logged in.");
 		}
+		var list = Lists.findOne(listId);
+		if(!list) {
+			throw new Meteor.Error(404, "List not found.");
+		}
+		if(list.owner !== this.userId) {
+			throw new Meteor.Error(401, "You don't own this list.");
+		}
 		if(type !== "text" && type !== "audio" && type !== "video") {
 			throw new Meteor.Error(400, "Invalid type.");
 		}
 		var services = Services.find({"type": type}).fetch();
 		var service = parseService(url, services);
 		var store = url;
-		if(service !== -1) {
+		if(service.name !== "unknown") {
 			if(service.urlRegex) {
 				var mediaId = url.match(service.urlRegex);
-				if(mediaId.length >= 2) {
+				if(mediaId && mediaId.length >= 2) {
 					store = mediaId[1];
 				}
 			}
-			var q = {};
-			q["services." + service.name] = store;
-			var m = Media.findOne(q);
-			if(m) {
-				Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": m._id}});
-				console.log("exists, update list");
-				return;
-			}
-			else {
+		}
+		var q = {};
+		q["services." + service.name] = store;
+		var m = Media.findOne(q);
+		if(m) {
+			Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": m._id}});
+			console.log("exists, update list");
+		}
+		else {
+			if(service.name !== "unknown") {
+				// Query service for information
+				console.log("query for info");
 				var media = {
 					"type": type,
 					"services": {},
@@ -64,18 +74,22 @@ Meteor.methods({
 					"creator": ""
 				};
 				media.services[service.name] = store;
-				// Query service for information
-				console.log("query for info");
-				m = Media.insert(media);
-				Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": m._id}});
-				console.log("didn't exist, update list");
-				return;
 			}
-		}
-		else {
-			// 1. Find potential matches
-			// 2. Ask user
-			console.log("find matches + ask user");
+			else {
+				// Ask user for information
+				console.log("ask for info");
+				var media = {
+					"type": type,
+					"services": {},
+					"name": url,
+					"creator": ""
+				};
+				media.services[service.name] = store;
+			}
+			Media.insert(media, function(error, id) {
+				Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": id}});
+				console.log("didn't exist, update list");
+			});
 		}
 	},
 	"removeItemFromPlaylist": function(listId, index) {
