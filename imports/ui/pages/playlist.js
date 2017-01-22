@@ -9,6 +9,13 @@ Template.playlist.onRendered(function() {
 });
 
 Template.playlist.helpers({
+	"playlist": function() {
+		var list = Lists.findOne(FlowRouter.getParam("id"));
+		if(list) {
+			return list;
+		}
+		return {};
+	},
 	"items": function() {
 		var list = Lists.findOne(FlowRouter.getParam("id"));
 		if(list) {

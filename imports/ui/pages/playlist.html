@@ -1,6 +1,6 @@
 <template name="playlist">
 	<div class="playlist">
-		<h3 class="pl-title">{{name}}</h3>
+		<h3 class="pl-title">{{playlist.name}}{{#if playlist.private}} - Private{{/if}}</h3>
 		<ol>
 			{{#each item in items}}
 			<li>{{item.name}} - {{item.creator}}</li>
