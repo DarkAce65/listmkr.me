@@ -55,22 +55,21 @@
 </template>
 
 <template name="plCover">
-	<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img rel="icon" type="image/png" src="/public/default.jpg" alt="...">
-      <div class="caption">
-        <h3><a href="{{pathFor 'playlist' id=_id}}">{{name}} ({{#if private}}Private, {{/if}}{{_id}})</a></h3>
-      </div>
-    </div>
-  </div>
-</div>
-	<div> ({{#if private}}Private, {{/if}}{{_id}}) - {{owner}}</div>
-	<ol style="font-size: 85%;">
-		{{#each item in items}}
-		<li><span style="font-family: monospace;">{{item._id}}</span> {{item.type}}<br>{{item.name}} - {{item.creator}}</li>
-		{{/each}}
-	</ol>
+	<div class="media">
+		<div class="media-left">
+			<a href="{{pathFor 'playlist' id=_id}}">
+				<img src="http://placehold.it/64" class="media-object">
+			</a>
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading">{{name}}<br><small style="color: #ddd;">({{#if private}}Private, {{/if}}{{_id}}) - {{owner}}</small></h4>
+			<ol style="font-size: 85%;">
+				{{#each item in items}}
+				<li><span style="font-family: monospace;">{{item._id}}</span> {{item.type}}<br>{{item.name}} - {{item.creator}}</li>
+				{{/each}}
+			</ol>
+		</div>
+	</div>
 </template>
 
 <template name="topButtons">
