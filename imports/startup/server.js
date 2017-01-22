@@ -35,19 +35,39 @@ if(Services.find().count() === 0) {
 	var data = [
 		{
 			"type": "video",
-			"name": "youtube"
+			"name": "youtube",
+			"urlRegexes": [],
+			"dataParser": function(url) {
+				var data = {};
+				return data;
+			}
 		},
 		{
 			"type": "audio",
-			"name": "spotify"
+			"name": "spotify",
+			"urlRegexes": [],
+			"dataParser": function(url) {
+				var data = {};
+				return data;
+			}
 		},
 		{
 			"type": "audio",
-			"name": "soundcloud"
+			"name": "soundcloud",
+			"urlRegexes": [],
+			"dataParser": function(url) {
+				var data = {};
+				return data;
+			}
 		},
 		{
 			"type": "audio",
-			"name": "itunes"
+			"name": "itunes",
+			"urlRegexes": [],
+			"dataParser": function(url) {
+				var data = {};
+				return data;
+			}
 		}
 	];
 	data.forEach(function(doc) {
