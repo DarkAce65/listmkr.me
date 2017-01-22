@@ -1,5 +1,6 @@
 <template name="playlist">
 	<div class="playlist">
+		<button type="button"  class="btn" id="home">Home</button> 
 		<h3 class="pl-title">{{playlist.name}}{{#if playlist.private}} - Private{{/if}}</h3>
 		<ol>
 			{{#each item in items}}
@@ -7,4 +8,10 @@
 			{{/each}}
 		</ol>
 	</div>
+	{{> inputAutocomplete settings=settings id="addMedia" class="input-xlarge" placeholder="Add an Item"}}
 </template>
+
+<template name="mediaFill">
+	<span class="label">{{name}}</span>
+</template>
+
