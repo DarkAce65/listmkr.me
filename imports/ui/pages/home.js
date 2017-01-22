@@ -28,8 +28,8 @@ Template.home.helpers({
 
 Template.topButtons.events({
 	"click #addPlayList": function(){
-		if(userID) {
-			Meteor.call("createPlaylist", "NAME", "PRIVATE (optional)");
+		if(Meteor.userId()) {
+			window.open(playlist.html);
 		} else {
 			Accounts.createUser(userObject, {
 				username: "username",
@@ -37,15 +37,26 @@ Template.topButtons.events({
 			});
 		}
 	},
-	"click #addToPlayList": function(){
-		if(userID) {
-			Meteor.call("addItemToPlaylist", "PLAYLISTID", "MEDIAID");
+	"click #addToPlaylist": function(){
+		if(Meteor.userId()) {
+			$("#addItem").modal("show");
 		} else {
 			Accounts.createUser(userObject, {
 				username: "username",
 				password: "password"
 			});
 		}
+	},
+	"click #save": function(e){
+		e.preventDefault();
+		var name = {
+			name: $("#itemName").val()
+		};
+		var link = {
+			link: $("itemLink").val()
+		};
+		//Meteor.call("addItemToPlaylist", PLAYLISTID, MEDIAID)
+		$("#addItem").modal("hide");
 	}
 });
 
