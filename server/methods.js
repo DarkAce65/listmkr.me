@@ -2,9 +2,9 @@ import { Meteor } from "meteor/meteor";
 
 function parseService(url, services) {
 	for(var i = 0; i < services.length; i++) {
-		for(var r = 0; r < services[r].identityRegexes.length; r++) {
+		for(var r = 0; r < services[i].identityRegexes.length; r++) {
 			if(url.match(services[i].identityRegexes[r])) {
-				return services[i].name;
+				return services[i];
 			}
 		}
 	}
@@ -35,21 +35,48 @@ Meteor.methods({
 		if(!this.userId) {
 			throw new Meteor.Error(401, "You are not logged in.");
 		}
-		if(type !== "text" || type !== "audio" || type !== "video") {
+		if(type !== "text" && type !== "audio" && type !== "video") {
 			throw new Meteor.Error(400, "Invalid type.");
 		}
-		var services = Services.find({"type": type}).fetch().map(function(value) {
-			return value.name;
-		});
-		var list = Lists.findOne(listId);
-		if(!list) {
-			throw new Meteor.Error(404, "List not found.");
+		var services = Services.find({"type": type}).fetch();
+		var service = parseService(url, services);
+		var store = url;
+		if(service !== -1) {
+			if(service.urlRegex) {
+				var mediaId = url.match(service.urlRegex);
+				if(mediaId.length >= 2) {
+					store = mediaId[1];
+				}
+			}
+			var q = {};
+			q["services." + service.name] = store;
+			var m = Media.findOne(q);
+			if(m) {
+				Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": m._id}});
+				console.log("exists, update list");
+				return;
+			}
+			else {
+				var media = {
+					"type": type,
+					"services": {},
+					"name": url,
+					"creator": ""
+				};
+				media.services[service.name] = store;
+				// Query service for information
+				console.log("query for info");
+				m = Media.insert(media);
+				Lists.update(listId, {$set: {"updatedAt": new Date()}, $push: {"items": m._id}});
+				console.log("didn't exist, update list");
+				return;
+			}
 		}
-		if(list.owner !== this.userId) {
-			throw new Meteor.Error(401, "You don't own this list.");
+		else {
+			// 1. Find potential matches
+			// 2. Ask user
+			console.log("find matches + ask user");
 		}
-		var now = new Date();
-		Lists.update(listId, {$set: {"updatedAt": now}, $push: {"items": mediaId}});
 	},
 	"removeItemFromPlaylist": function(listId, index) {
 		if(!this.userId) {

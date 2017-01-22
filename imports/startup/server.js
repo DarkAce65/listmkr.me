@@ -36,8 +36,8 @@ if(Services.find().count() === 0) {
 		{
 			"type": "video",
 			"name": "youtube",
-			"identityRegexes": ["youtube\.com|youtu\.be"],
-			"urlRegex": "(?:youtube\.com.*?\Wvi?[=/]|youtu\.be\/)([A-z0-9-]*)"
+			"identityRegexes": ["youtube\\.com|youtu\\.be"],
+			"urlRegex": '(?:youtube\\.com.*?\\Wvi?[=\/]|youtu\\.be\\/)([A-z0-9-]*)'
 		},
 		{
 			"type": "audio",
