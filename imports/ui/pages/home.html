@@ -1,5 +1,8 @@
 <template name="home">
 	<h1>listmkr.me</h1>
+	<p>Accounts.createUser({username: USERNAME, password: PASSWORD});</p>
+	<p>Meteor.call("createPlaylist", NAME, PRIVATE (optional));</p>
+	<p>Meteor.call("addItemToPlaylist", PLAYLISTID, MEDIAID);</p>
 	<div>
 		<h3>Playlists</h3>
 		{{#each playlists}}
