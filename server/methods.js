@@ -1,5 +1,17 @@
 import { Meteor } from "meteor/meteor";
 
+function parseService(url, services) {
+	for(var i = 0; i < services.length; i++) {
+		for(var r = 0; r < services[r].urlRegexes.length; r++) {
+			if(url.match(services[i].urlRegexes[r])) {
+				return services[i].name;
+			}
+		}
+	}
+
+	return -1;
+}
+
 Meteor.methods({
 	"createPlaylist": function(name, prvt) {
 		if(!this.userId) {
@@ -19,14 +31,16 @@ Meteor.methods({
 		}
 		Lists.insert(list);
 	},
-	"addItemToPlaylist": function(listId, mediaId) {
+	"addItemToPlaylist": function(listId, url, type) {
 		if(!this.userId) {
 			throw new Meteor.Error(401, "You are not logged in.");
 		}
-		var media = Media.findOne(mediaId);
-		if(!media) {
-			throw new Meteor.Error(404, "Media not found.");
+		if(type !== "text" || type !== "audio" || type !== "video") {
+			throw new Meteor.Error(400, "Invalid type.");
 		}
+		var services = Services.find({"type": type}).fetch().map(function(value) {
+			return value.name;
+		});
 		var list = Lists.findOne(listId);
 		if(!list) {
 			throw new Meteor.Error(404, "List not found.");

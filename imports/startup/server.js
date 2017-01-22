@@ -27,6 +27,50 @@ if(Media.find().count() === 0) {
 		}
 	];
 	data.forEach(function(doc) {
-		Media.update(doc);
+		Media.insert(doc);
+	});
+}
+
+if(Services.find().count() === 0) {
+	var data = [
+		{
+			"type": "video",
+			"name": "youtube",
+			"urlRegexes": [],
+			"dataParser": function(url) {
+				var data = {};
+				return data;
+			}
+		},
+		{
+			"type": "audio",
+			"name": "spotify",
+			"urlRegexes": [],
+			"dataParser": function(url) {
+				var data = {};
+				return data;
+			}
+		},
+		{
+			"type": "audio",
+			"name": "soundcloud",
+			"urlRegexes": [],
+			"dataParser": function(url) {
+				var data = {};
+				return data;
+			}
+		},
+		{
+			"type": "audio",
+			"name": "itunes",
+			"urlRegexes": [],
+			"dataParser": function(url) {
+				var data = {};
+				return data;
+			}
+		}
+	];
+	data.forEach(function(doc) {
+		Services.insert(doc);
 	});
 }
