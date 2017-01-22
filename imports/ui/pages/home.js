@@ -3,7 +3,11 @@ import { Tracker } from "meteor/tracker";
 
 import "./home.html";
 
-Template.body.helpers({
+Template.home.onCreated(function() {
+	Meteor.subscribe("lists");
+});
+
+Template.home.helpers({
 	playlists: [
 		{
 			"id": "12345",

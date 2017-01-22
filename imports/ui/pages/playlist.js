@@ -3,7 +3,11 @@ import { FlowRouter } from "meteor/kadira:flow-router";
 
 import "./playlist.html";
 
-Template.body.helpers({
+Template.playlist.onRendered(function() {
+	Meteor.subscribe("playlist", FlowRouter.getParam("id"));
+});
+
+Template.playlist.helpers({
 	"items": function() {
 		var list = Lists.findOne(FlowRouter.getParam("id"));
 		if(list) {
