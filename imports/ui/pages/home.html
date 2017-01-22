@@ -4,7 +4,7 @@
 	<p>Meteor.call("createPlaylist", NAME, PRIVATE (optional));</p>
 	<p>Meteor.call("addItemToPlaylist", PLAYLISTID, MEDIAID);</p>
 	<div>
-		{{> home buttons}}
+		{{> topButtons}}
 	</div>
 	<div>
 		<h3>Playlists</h3>
@@ -34,6 +34,6 @@
 <template name="topButtons">
 	<div>
 	<button id="addPlaylist" type="button">Add Playlist</button>
-	<button id="addToPlaylist" type="button">Add To Playlist</button>
+	<button id="addToPlaylist" type="button">Add Item To Playlist</button>
 </div>
 </template>
