@@ -51,7 +51,7 @@ Meteor.methods({
 		if(service.name !== "unknown") {
 			if(service.urlRegex) {
 				var mediaId = url.match(service.urlRegex);
-				if(mediaId.length >= 2) {
+				if(mediaId && mediaId.length >= 2) {
 					store = mediaId[1];
 				}
 			}
