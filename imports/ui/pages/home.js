@@ -26,6 +26,28 @@ Template.home.helpers({
 	}
 });
 
+Template.topButtons.events({
+	"click #addPlayList": function(){
+		if(userID) {
+			Meteor.call("createPlaylist", "NAME", "PRIVATE (optional)");
+		} else {
+			Accounts.createUser(userObject, {
+				username: "username",
+				password: "password"
+			});
+		}
+	},
+	"click #addToPlayList": function(){
+		if(userID) {
+			Meteor.call("addItemToPlaylist", "PLAYLISTID", "MEDIAID");
+		} else {
+			Accounts.createUser(userObject, {
+				username: "username",
+				password: "password"
+			});
+		}
+	}
+});
 
 Template.plCover.helpers({
 	items: function() {
